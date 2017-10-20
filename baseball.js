@@ -29,11 +29,15 @@ var playerThree = {
     speed: 90
 }
 
-var pitch = Math.floor(Math.random() * 8 + 1)
 var homeruns = 0;
 
 console.log(`Enter your name`);
 rl.prompt()
+
+function start(){
+    var timer = setInterval(function(){console.log(`TIME'S UP!!`)}, 15000);
+}
+
 
 rl.on('line', (input) =>{
     
@@ -49,19 +53,24 @@ rl.on('line', (input) =>{
     if(input === '1'){
         playerOne.name = user;
         console.log(`You chose player One`)
-        console.log(`Let's play ball!!`)
+        console.log(`Let's play ball!!\nswing`)
     }else if(input === '2'){
         playerTwo.name = user;
         console.log(`You chose player Two`)
-        console.log(`Let's play ball!!`)
+        console.log(`Let's play ball!!\nswing`)
     }else if (input === '3'){
         playerThree.name = user;
         console.log(`You chose player Three`)
-        console.log(`Let's play ball!!`)
+        console.log(`Let's play ball!!\nswing`)
+    }
+    if(input.toLowerCase() === 'swing'){
+        start();
     }
 
-
-    if(input === 'swing' && pitch >= 4){
+    var pitch = Math.floor(Math.random() * 8 + 1)
+    if(input.toLowerCase() === 'swing' && pitch < 4){
+        console.log(`Swing and a miss!!`)
+    }else if(input.toLowerCase() === 'swing' && pitch >= 4){
         var swing = Math.floor(Math.random() * 10 + 1)
         if(swing >= 5){
             var feet = Math.floor(Math.random() * 176 + 325)
@@ -71,8 +80,6 @@ rl.on('line', (input) =>{
             var fail = Math.floor(Math.random() * 175 + 1)
             console.log(`You've came up short. ${fail}ft`)
         }
-    }else if(input === 'swing' && pitch < 4){
-        console.log(`Swing and a miss!!`)
     }
 
 
@@ -81,12 +88,12 @@ rl.on('line', (input) =>{
         console.log(`You advanced to the next round`)
         rl.close();
     }
-    // else if(homeruns < 10){
+    // else if(homeruns < 10 && start() === 15){
     //     console.log(`Sorry, you came up short.`)
     //     rl.close();
     // }
-    // else{
-    //     rl.setPrompt(`Here comes the pitch\nSwing`)
+    // else{                    
+    //     rl.setPrompt(`Here comes the pitch\n|Swing|\n`)
     //     rl.prompt()
     // }
 });
