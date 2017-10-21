@@ -35,9 +35,8 @@ console.log(`Enter your name`);
 rl.prompt()
 
 function start(){
-    var timer = setInterval(function(){console.log(`TIME'S UP!!`)}, 15000);
+    var timer = setInterval(function(){console.log(`TIME'S UP!! Sorry, no advance`)}, 15000);
 }
-
 
 rl.on('line', (input) =>{
     
@@ -51,18 +50,22 @@ rl.on('line', (input) =>{
     console.log(`Select '3' for:\nPlayer Three\npower: 70\nspeed: 90\n`)
     rl.prompt()
     if(input === '1'){
+        clear();
         playerOne.name = user;
         console.log(`You chose player One`)
         console.log(`Let's play ball!!\nswing`)
     }else if(input === '2'){
+        clear();
         playerTwo.name = user;
         console.log(`You chose player Two`)
         console.log(`Let's play ball!!\nswing`)
     }else if (input === '3'){
+        clear();
         playerThree.name = user;
         console.log(`You chose player Three`)
         console.log(`Let's play ball!!\nswing`)
     }
+    
     if(input.toLowerCase() === 'swing'){
         start();
     }
@@ -83,16 +86,12 @@ rl.on('line', (input) =>{
     }
 
 
-
     if(homeruns === 10){
         console.log(`You advanced to the next round`)
         rl.close();
     }
-    // else if(homeruns < 10 && start() === 15){
-    //     console.log(`Sorry, you came up short.`)
-    //     rl.close();
-    // }
-    // else{                    
+    
+    // if(homeruns < 10){                    
     //     rl.setPrompt(`Here comes the pitch\n|Swing|\n`)
     //     rl.prompt()
     // }
